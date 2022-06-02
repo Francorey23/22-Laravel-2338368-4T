@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -23,7 +24,8 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $teachers = Teacher::All(); 
+        return view('Groups.create', compact('teachers'));
     }
 
     /**

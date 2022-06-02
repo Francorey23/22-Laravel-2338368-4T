@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +22,9 @@ Route::get('/', function () {
 
 //Ruta para docentes
 Route::resource('profesores', TeacherController::class);
+
+//Ruta para materias
+Route::resource('materias', SubjectController::class);
+
+//Ruta para grupos
+Route::resource('grupos', GroupController::class);

@@ -24,7 +24,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('Subjects.create');
     }
 
     /**
@@ -35,7 +35,12 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subjects = new Subject;
+        $subjects->nombre = $request->nombre;
+        $subjects->creditos = $request->creditos;
+        $subjects->costo = $request->costo;
+        $subjects->save();
+        return redirect()->route('materias.create');
     }
 
     /**
