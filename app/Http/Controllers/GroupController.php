@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
+use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,8 @@ class GroupController extends Controller
     public function create()
     {
         $teachers = Teacher::All(); 
-        return view('Groups.create', compact('teachers'));
+        $subjects = Subject::All();
+        return view('Groups.create', compact('teachers', 'subjects'));
     }
 
     /**
@@ -36,7 +39,14 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $groups = new Group;
+        $groups->anio = $request->anio;
+        $groups->periodo = $request->periodo;
+        $groups->teacher_id = $request->teacher_id;
+        $groups->subject_id = $request->subject_id;
+        $groups->save();
+        return redirect()->route('grupos.create');
+
     }
 
     /**

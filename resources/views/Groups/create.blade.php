@@ -25,6 +25,15 @@
                 @endforeach
               </select>
           </div>
+
+          <div class="col-lg-6 col-md-4 col-sm-2">
+            <select class="form-select" name="subject_id">
+                <option selected="true" disabled="disabled">Materias | Créditos</option>
+                @foreach ($subjects as $subject)
+                 <option value="{{$subject->id}}">{{$subject->nombre}} {{$subject->creditos}}</option>
+                @endforeach
+              </select>
+          </div>
           
 
         </div>

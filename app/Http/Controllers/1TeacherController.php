@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Psy\Readline\Hoa\FileFinder;
 
 class TeacherController extends Controller
 {
@@ -45,15 +46,17 @@ class TeacherController extends Controller
         $teachers->nivel_academico = $request->nivel_academico;
         $teachers->save();
         return redirect()->route('profesores.create');
+
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show($id)
     {
         //
     }
@@ -61,11 +64,12 @@ class TeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit($id)
     {
+        //$teacher = Teacher::find($id);
         return view('Teachers.edit',compact('teacher'));
     }
 
@@ -73,21 +77,28 @@ class TeacherController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $teacher->apellidos = $request->apellidos;
+        $teacher->nombres = $request->nombres;
+        $teacher->direccion = $request->direccion;
+        $teacher->correo = $request->correo;
+        $teacher->celular = $request->celular;
+        $teacher->nivel_academico = $request->nivel_academico;
+        $teacher->save();
+        return redirect()->route('profesores.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy($id)
     {
         //
     }

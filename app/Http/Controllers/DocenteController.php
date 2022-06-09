@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
 use Illuminate\Http\Request;
 
-class TeacherController extends Controller
+class DocenteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::simplePaginate(2);
-        return view('Teachers.index', compact('teachers'));
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('Teachers.create');
+        //
     }
 
     /**
@@ -36,24 +34,16 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $teachers = new Teacher;
-        $teachers->nombres = $request->nombres;
-        $teachers->apellidos = $request->apellidos;
-        $teachers->direccion = $request->direccion;
-        $teachers->correo = $request->correo;
-        $teachers->celular = $request->celular;
-        $teachers->nivel_academico = $request->nivel_academico;
-        $teachers->save();
-        return redirect()->route('profesores.create');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show($id)
     {
         //
     }
@@ -61,22 +51,22 @@ class TeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit($id)
     {
-        return view('Teachers.edit',compact('teacher'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -84,10 +74,10 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy($id)
     {
         //
     }
