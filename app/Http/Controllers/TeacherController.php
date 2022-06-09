@@ -64,8 +64,9 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit($id)
     {
+        $teacher = Teacher::find($id);
         return view('Teachers.edit',compact('teacher'));
     }
 
@@ -76,9 +77,18 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, $id)
     {
-        //
+        $teacher = Teacher::find($id);
+        $teacher->apellidos = $request->apellidos;
+        $teacher->nombres = $request->nombres;
+        $teacher->direccion = $request->direccion;
+        $teacher->correo = $request->correo;
+        $teacher->celular = $request->celular;
+        $teacher->nivel_academico = $request->nivel_academico;
+        $teacher->save();
+        return redirect()->route('profesores.index');
+       // return response()->json($teacher);
     }
 
     /**
@@ -87,8 +97,10 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy($id)
     {
-        //
+        $teacher=Teacher::findOrFail($id);
+        $teacher->delete();
+        return redirect()->route('profesores.index');
     }
 }

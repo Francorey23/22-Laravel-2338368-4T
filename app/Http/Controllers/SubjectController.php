@@ -14,7 +14,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = Subject::simplePaginate(4);
+        return view('Subjects.index', compact('subjects'));
     }
 
     /**
@@ -60,9 +61,11 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subject $subject)
+    public function edit($id)
     {
-        //
+        $subject = Subject::find($id);
+        return view('Subjects.edit', compact('subject'));
+
     }
 
     /**
@@ -72,9 +75,14 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, $id)
     {
-        //
+        $subject = Subject::find($id);
+        $subject->nombre = $request->nombre;
+        $subject->creditos = $request->creditos;
+        $subject->costo = $request->costo;
+        $subject->save();
+        return redirect()->route('materias.index');
     }
 
     /**
@@ -83,8 +91,10 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy($id)
     {
-        //
+        $subject=Subject::findOrFail($id);
+        $subject->delete();
+        return redirect()->route('Subjects.index');
     }
 }

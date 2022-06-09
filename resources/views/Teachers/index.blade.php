@@ -28,10 +28,10 @@
               <a href="{{route('profesores.edit', $teacher->id)}}" class="btn btn-warning btn-sm" role="button" aria-disabled="true">Editar</a>
             </td>
             <td>
-              <form action="" method="POST">
+              <form action="{{route('profesores.destroy', $teacher->id)}}" method="POST">
                 @method('DELETE')
                 @csrf
-                <a href="{{route('profesores.destroy', $teacher)}}" class="btn btn-danger btn-sm" role="button" aria-disabled="true">Eliminar</a>
+                <button type="submit" class="btn btn-danger btn-sm" >Eliminar</button>  
               </form>
             </td>  
             </td>
